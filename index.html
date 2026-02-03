@@ -1,255 +1,1829 @@
-<!--
-  Follow the instructions written in comments to create your stunning portfolio
--->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello There!!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Put your site title here -->
-  <title>
-    Hi There, I'm Yash | A Software/Game Developer from India.
-  </title>
+        :root {
+            --bg-dark: #22333B;
+            --bg-darker: #0A0908;
+            --accent-yellow: #A9927D;
+            --accent-cyan: #5E503F;
+            --accent-pink: #A9927D;
+            --text-white: #F2F4F3;
+            --text-gray: #A9927D;
+            --pixel-size: 2px;
+        }
 
-  <meta name="description" content="Add small description of yourslef.">
-  <!-- Add some coding keywords below, Ex: (React, CSS etc) -->
-  <meta name="keywords" content="Put your name, skills and some coding keywords" />
-  <link rel="stylesheet" href="index.css" />
+        body {
+            font-family: 'VT323', monospace;
+            background: var(--bg-darker);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Starfield Background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: var(--bg-darker);
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            margin-bottom: 4rem;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            text-shadow: 4px 4px 0 var(--accent-cyan);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--text-white);
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--accent-yellow);
+            border: 2px solid var(--accent-yellow);
+            box-shadow: 0 0 20px var(--accent-yellow);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            align-items: center;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .hero-text h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            color: var(--accent-yellow);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            text-shadow: 3px 3px 0 var(--accent-cyan);
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.8rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            background: var(--accent-yellow);
+            color: var(--bg-darker);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 0 #5E503F;
+            position: relative;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 0 #5E503F, 0 0 30px var(--accent-yellow);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 0 #5E503F;
+        }
+
+        /* Pixel Avatar */
+        .avatar-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pixel-avatar {
+            width: auto;
+            height: auto;
+            max-width: 400px;
+            background: transparent;
+            border: none;
+            box-shadow: 0 0 40px rgba(94, 80, 63, 0.5);
+            image-rendering: pixelated;
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .pixel-avatar img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .pixel-avatar::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #A9927D, #5E503F, #22333B);
+            opacity: 0.3;
+            filter: blur(20px);
+            z-index: -1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-dark);
+            padding: 4rem;
+            margin-bottom: 4rem;
+            border: 3px solid var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(94, 80, 63, 0.3);
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .about h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Experience Section */
+        .experience {
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out 0.7s both;
+        }
+
+        .experience h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #A9927D, #5E503F, #22333B);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-yellow);
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 30px rgba(255, 235, 59, 0.3);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-yellow);
+            border: 3px solid var(--bg-darker);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-date {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.3rem;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            font-size: 1.2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects {
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out 0.9s both;
+        }
+
+        .projects h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .project-card {
+            background: var(--bg-dark);
+            border: 3px solid var(--accent-yellow);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 40px rgba(169, 146, 125, 0.4);
+        }
+
+        .project-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-title a {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .project-title a:hover {
+            color: var(--text-white);
+            text-shadow: 0 0 20px var(--accent-yellow);
+        }
+
+        .project-title a::after {
+            content: ' →';
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-title a:hover::after {
+            opacity: 1;
+        }
+
+        .project-tech {
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .project-description {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+        }
+
+        .project-media {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Single child centering - when project-media has only one direct child */
+        .project-media.single-media {
+            display: flex;
+            justify-content: center;
+        }
+
+        .project-media.single-media > * {
+            width: 70%;
+            max-width: 900px;
+        }
+
+        .project-video {
+            border: 2px solid var(--accent-cyan);
+        }
+
+        .project-video video {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .project-screenshots {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .project-screenshot {
+            position: relative;
+            border: 2px solid var(--accent-cyan);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .project-screenshot:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(94, 80, 63, 0.5);
+        }
+
+        .project-screenshot img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-screenshot:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Image Carousel */
+        .image-carousel {
+            position: relative;
+            width: 100%;
+            border: 3px solid var(--accent-cyan);
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--bg-darker);
+            cursor: pointer;
+        }
+
+        /* Arcade-style Navigation Arrows */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-yellow);
+            color: var(--bg-darker);
+            border: 4px solid var(--bg-darker);
+            width: 60px;
+            height: 60px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 0 var(--accent-cyan), inset 0 0 0 2px var(--accent-yellow);
+        }
+
+        .carousel-arrow:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 0 var(--accent-cyan), 0 0 30px var(--accent-yellow), inset 0 0 0 2px var(--accent-yellow);
+            background: var(--text-white);
+        }
+
+        .carousel-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+            box-shadow: 0 3px 0 var(--accent-cyan), inset 0 0 0 2px var(--accent-yellow);
+        }
+
+        .carousel-arrow.prev {
+            left: 10px;
+        }
+
+        .carousel-arrow.next {
+            right: 10px;
+        }
+
+        .carousel-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: var(--text-gray);
+        }
+
+        .carousel-arrow:disabled:hover {
+            transform: translateY(-50%);
+            box-shadow: 0 6px 0 var(--accent-cyan), inset 0 0 0 2px var(--accent-yellow);
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 15px;
+            height: 15px;
+            background: var(--bg-darker);
+            border: 3px solid var(--accent-yellow);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-indicator:hover {
+            background: var(--text-gray);
+            transform: scale(1.2);
+        }
+
+        .carousel-indicator.active {
+            background: var(--accent-yellow);
+            box-shadow: 0 0 20px var(--accent-yellow);
+        }
+
+        /* Carousel Image Counter */
+        .carousel-counter {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--bg-darker);
+            color: var(--accent-yellow);
+            padding: 0.5rem 1rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            border: 2px solid var(--accent-yellow);
+            z-index: 10;
+            box-shadow: 0 4px 0 var(--accent-cyan);
+        }
+
+        /* Video Wrapper */
+        .project-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            border: 2px solid var(--accent-yellow);
+            overflow: hidden;
+        }
+
+        .project-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Expand Button */
+        .expand-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-yellow);
+            color: var(--bg-darker);
+            border: none;
+            padding: 0.5rem 1rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            box-shadow: 0 4px 0 var(--accent-cyan);
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 var(--accent-cyan), 0 0 20px var(--accent-yellow);
+        }
+
+        .expand-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 0 var(--accent-cyan);
+        }
+
+        /* Modal/Overlay for Expanded Media */
+        .media-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 9, 8, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .media-modal.active {
+            display: flex;
+        }
+
+        .media-modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        .media-modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 4px solid var(--accent-yellow);
+            box-shadow: 0 0 50px rgba(169, 146, 125, 0.5);
+        }
+
+        .media-modal-content iframe {
+            width: 90vw;
+            height: 50.625vw; /* 16:9 aspect ratio */
+            max-height: 90vh;
+            border: 4px solid var(--accent-yellow);
+            box-shadow: 0 0 50px rgba(169, 146, 125, 0.5);
+        }
+
+        /* Modal Carousel Navigation */
+        .modal-carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-yellow);
+            color: var(--bg-darker);
+            border: 4px solid var(--text-white);
+            width: 70px;
+            height: 70px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 0 var(--accent-cyan), inset 0 0 0 3px var(--accent-yellow);
+        }
+
+        .modal-carousel-nav:hover {
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 10px 0 var(--accent-cyan), 0 0 40px var(--accent-yellow), inset 0 0 0 3px var(--accent-yellow);
+        }
+
+        .modal-carousel-nav.prev {
+            left: -90px;
+        }
+
+        .modal-carousel-nav.next {
+            right: -90px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -80px;
+            right: 0;
+            background: var(--accent-yellow);
+            color: var(--bg-darker);
+            border: 4px solid var(--text-white);
+            width: 60px;
+            height: 60px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 0 var(--accent-cyan);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 8px 0 var(--accent-cyan), 0 0 30px var(--accent-yellow);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .project-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-link {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: var(--accent-yellow);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--accent-yellow);
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: var(--accent-yellow);
+            color: var(--bg-darker);
+            box-shadow: 0 0 20px rgba(169, 146, 125, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 2px solid var(--accent-yellow);
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+
+        footer p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--accent-yellow);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--text-white);
+            text-shadow: 0 0 20px var(--accent-yellow);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Project Archive Carousel */
+        .project-archive {
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out 1.1s both;
+        }
+
+        .project-archive h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .archive-carousel {
+            position: relative;
+            width: 100%;
+            padding: 1rem 60px;
+        }
+
+        .archive-carousel-wrapper {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .archive-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2rem;
+        }
+
+        .archive-card {
+            width: calc((100% - 2rem) / 2);
+            min-width: calc((100% - 2rem) / 2);
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-cyan);
+            padding: 1.5rem;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            box-sizing: border-box;
+        }
+
+        .archive-card:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 30px rgba(169, 146, 125, 0.3);
+        }
+
+        .archive-card-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .archive-card-tech {
+            font-size: 1rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .archive-card-video {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin-bottom: 1rem;
+            border: 2px solid var(--accent-cyan);
+            overflow: hidden;
+            background: var(--bg-darker);
+        }
+
+        .archive-card-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .archive-card-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-gray);
+        }
+
+        .archive-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-yellow);
+            color: var(--bg-darker);
+            border: 3px solid var(--bg-darker);
+            width: 50px;
+            height: 50px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 0 var(--accent-cyan);
+        }
+
+        .archive-nav:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 0 var(--accent-cyan), 0 0 20px var(--accent-yellow);
+        }
+
+        .archive-nav.prev {
+            left: 0;
+        }
+
+        .archive-nav.next {
+            right: 0;
+        }
+
+        .archive-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .archive-nav:disabled:hover {
+            transform: translateY(-50%);
+            box-shadow: 0 4px 0 var(--accent-cyan);
+        }
+
+        .archive-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .archive-indicator {
+            width: 12px;
+            height: 12px;
+            background: var(--bg-darker);
+            border: 2px solid var(--accent-yellow);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .archive-indicator:hover {
+            background: var(--text-gray);
+        }
+
+        .archive-indicator.active {
+            background: var(--accent-yellow);
+            box-shadow: 0 0 15px var(--accent-yellow);
+        }
+
+        /* Single Image Container */
+        .single-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            border: 3px solid var(--accent-cyan);
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .single-image-container img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .single-image-container:hover img {
+            transform: scale(1.02);
+        }
+
+        .single-image-container .expand-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* LinkedIn Embed */
+        .linkedin-embed-container {
+            width: 100%;
+            max-width: 504px;
+            border: 2px solid var(--accent-cyan);
+            background: var(--bg-dark);
+            padding: 1rem;
+        }
+
+        .linkedin-embed-container iframe {
+            display: block;
+            width: 100%;
+            min-height: 500px;
+            border: none;
+        }
+
+        .linkedin-placeholder {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .pixel-avatar {
+                width: 300px;
+                height: 300px;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .project-media {
+                grid-template-columns: 1fr;
+            }
+
+            .project-screenshot img {
+                height: auto;
+            }
+
+            .archive-card {
+                min-width: 100%;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Starfield Background -->
+    <div class="starfield" id="starfield"></div>
 
-  <!-- ***** Header ***** -->
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <nav>
+                <a href="#about">ABOUT</a>
+                <a href="#projects">PROJECTS</a>
+            </nav>
+        </header>
 
-  <header class="header" role="banner" id="top">
-    <div class="row">
-      <nav class="nav" role="navigation">
-        <ul class="nav__items">
-          <li class="nav__item">
-            <a href="#about" class="nav__link">About</a>
-          </li>
-          <li class="nav__item"><a href="#work" class="nav__link">Projects</a></li>
-          <li class="nav__item">
-            <a href="#contact" class="nav__link">Contact</a>
-          </li>
-        </ul>
-      </nav>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>HI THERE, I'M YASH</h1>
+                <p class="subtitle">Unreal Engine Developer | Digital Twin Applications & Gameplay Systems</p>
+            </div>
+            <div class="avatar-container">
+                <div class="pixel-avatar">
+                    <img src="./images/WebsiteLogo.png" alt="Yash's Avatar">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <h2>ABOUT ME</h2>
+            <p>A software and game developer with expertise in systems architecture, performance optimization, and real-time 3D applications.
+Experience includes building Digital Twin platforms with real-time sensor monitoring, developing gameplay mechanics for action-RPGs, and creating scalable streaming pipelines for large-scale 3D data. Working across game engines and enterprise solutions with a focus on efficient code and thoughtful system design.
+Motivated by challenging technical problems and the pursuit of elegant, performant solutions.</p></section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <h2>FEATURED PROJECTS</h2>
+
+            <!-- Project 1: Proqio - Digital Twin -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">
+                        <a>
+                            PROQIO - DIGITAL TWIN
+                        </a>
+                    </h3>
+                    <div class="project-tech">UE5 • Pixel Streaming • Blender • Python • IfcOpenShell • laspy</div>
+                    <div class="project-meta">2024 - Ongoing | Lead Developer</div>
+                </div>
+                <p class="project-description">
+                    A pixel streaming 3D application for real-time sensor data monitoring, visualization, and analysis. Supports industry-standard 3D formats including point clouds (LAS/LAZ) and IFC, with models streamed directly into the application. Features real-time modeling tools and advanced functionalities built within Unreal Engine.
+                </p>
+            </div>
+
+            <!-- Project 2: Senior Activities -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">
+                        <a>
+                            SENIOR ACTIVITIES
+                        </a>
+                    </h3>
+                    <div class="project-tech">Unity</div>
+                    <div class="project-meta">Apr 2025 - Aug 2025 | Gameplay Programmer</div>
+                </div>
+                <p class="project-description">
+                    A light-hearted, satirical photography evidence game where players take on the role of a Nonna leading a revolution within her retirement home against the nurses who bully the residents. Blend stealth, investigation, and humor as you gather photographic proof to expose wrongdoing.
+                </p>
+                <div class="project-media single-media">
+                    <div class="image-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-counter">1 / 6</div>
+                            <button class="expand-btn" onclick="event.stopPropagation(); this.closest('.image-carousel').querySelector('.carousel-slide.active img').click();">⛶</button>
+                            <div class="carousel-track">
+                                <div class="carousel-slide active">
+                                    <img src="./images/SENIORACTIVITIES/1.webp" alt="Senior Activities Screenshot 1">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="./images/SENIORACTIVITIES/2.png" alt="Senior Activities Screenshot 2">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="./images/SENIORACTIVITIES/3.png" alt="Senior Activities Screenshot 3">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="./images/SENIORACTIVITIES/4.png" alt="Senior Activities Screenshot 4">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="./images/SENIORACTIVITIES/5.png" alt="Senior Activities Screenshot 5">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="./images/SENIORACTIVITIES/6.png" alt="Senior Activities Screenshot 6">
+                                </div>
+                            </div>
+                            <button class="carousel-arrow prev">◄</button>
+                            <button class="carousel-arrow next">►</button>
+                            <div class="carousel-indicators">
+                                <div class="carousel-indicator active"></div>
+                                <div class="carousel-indicator"></div>
+                                <div class="carousel-indicator"></div>
+                                <div class="carousel-indicator"></div>
+                                <div class="carousel-indicator"></div>
+                                <div class="carousel-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Poles Apart -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">
+                        <a>
+                            POLES APART
+                        </a>
+                    </h3>
+                    <div class="project-tech">Unity</div>
+                    <div class="project-meta">Sep 2025 - Jan 2026 | Game Director / Programmer</div>
+                </div>
+                <p class="project-description">
+                    A cooperative puzzle adventure where magnetism becomes teamwork. Players navigate shared challenges through magnetic interactions—attraction and repulsion—transforming every action into a moment of collaboration. Journey through a dreamy yet industrial world to repair a fractured core, with success depending on understanding your teammate's actions.
+                </p>
+                <div class="project-media">
+                    <div class="project-video-wrapper">
+                        <button class="expand-btn" onclick="expandVideo(this.parentElement.querySelector('iframe'))">⛶</button>
+                        <iframe
+                            src="https://www.youtube.com/embed/OQVuU9UU384"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="image-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-counter">1 / 1</div>
+                            <button class="expand-btn" onclick="event.stopPropagation(); this.closest('.image-carousel').querySelector('.carousel-slide.active img').click();">⛶</button>
+                            <div class="carousel-track">
+                                <div class="carousel-slide active">
+                                    <img src="./images/POLESAPART/1.png" alt="Poles Apart Screenshot 1">
+                                </div>
+                            </div>
+                            <button class="carousel-arrow prev" disabled>◄</button>
+                            <button class="carousel-arrow next" disabled>►</button>
+                            <div class="carousel-indicators">
+                                <div class="carousel-indicator active"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Blender Motion Capture Addon -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">
+                        <a>
+                            BLENDER MOTION CAPTURE ADDON
+                        </a>
+                    </h3>
+                    <div class="project-tech">Python • Blender • Google Mediapipe</div>
+                    <div class="project-meta">2023 | Bachelor's Thesis</div>
+                </div>
+                <p class="project-description">
+                    A Blender addon integrating Google's Mediapipe library to capture animations and poses directly within Blender. Developed as a Bachelor's thesis project, combining computer vision with 3D animation tools to create an accessible motion capture solution.
+                </p>
+                <div class="project-media single-media">
+                    <div class="image-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-counter">1 / 6</div>
+                                <button class="expand-btn" onclick="event.stopPropagation(); this.closest('.image-carousel').querySelector('.carousel-slide.active img').click();">⛶</button>
+                                <div class="carousel-track">
+                                    <div class="carousel-slide active">
+                                        <img src="./images/BLENDERMOTIONCAPTUREADDON.png" alt="Blender Addon Screenshot 1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Tech Art - Destruction Gallery -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">
+                        <a>
+                            TECH ART - DESTRUCTION GALLERY
+                        </a>
+                    </h3>
+                    <div class="project-tech">UE5 • Niagara • Chaos Destruction</div>
+                    <div class="project-meta">Tech Art Elective Project</div>
+                </div>
+                <p class="project-description">
+                    A shooting gallery game built as a Tech Art elective project, exploring destruction systems and visual effects in Unreal Engine. Players throw balls at stacks of objects, triggering physics-based destruction and particle effects showcasing Chaos Destruction and Niagara VFX capabilities.
+                </p>
+                <!-- Media coming soon -->
+            </div>
+        </section>
+
+        <!-- Project Archive Section -->
+        <section class="project-archive" id="archive">
+            <h2>PROJECT ARCHIVE</h2>
+            <div class="archive-carousel">
+                <button class="archive-nav prev">◄</button>
+                <div class="archive-carousel-wrapper">
+                <div class="archive-carousel-track">
+                    <!-- Archive Card 1: Horde Mode Coop Shooter -->
+                    <div class="archive-card">
+                        <h3 class="archive-card-title">HORDE MODE COOP SHOOTER</h3>
+                        <div class="archive-card-tech">UE4 • C++</div>
+                        <div class="archive-card-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/Ji5sdgNzizY"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="archive-card-description">
+                            Third-person shooter with over-the-shoulder camera, abilities (super speed, healing), and multiplayer support for up to 4 players. Features AI enemies, networked gameplay, and dynamic difficulty scaling.
+                        </p>
+                    </div>
+
+                    <!-- Archive Card 2: Toycathon Game Jam -->
+                    <div class="archive-card">
+                        <h3 class="archive-card-title">TOYCATHON GAME JAM</h3>
+                        <div class="archive-card-tech">UE4 • C++</div>
+                        <div class="archive-card-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/bRO3eJAHFx0"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="archive-card-description">
+                            A Souls-like game created under team Pixel Vibe, reaching the finals. Players experience iconic Indian historical moments and battles with challenging combat mechanics and historically inspired environments.
+                        </p>
+                    </div>
+
+                    <!-- Archive Card 3: 2D/3D Hybrid Action Game -->
+                    <div class="archive-card">
+                        <h3 class="archive-card-title">2D/3D HYBRID ACTION GAME</h3>
+                        <div class="archive-card-tech">UE5 • C++ • Aseprite</div>
+                        <div class="archive-card-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/RuNDhAa3ErA"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="archive-card-description">
+                            An action game using PaperZD with stylized environments, featuring an ability system integrated with puzzles, plus melee and ranged combat. Unique 2D sprites in 3D environments create a distinctive visual style.
+                        </p>
+                    </div>
+
+                    <!-- Archive Card 4: Platformer Game -->
+                    <div class="archive-card">
+                        <h3 class="archive-card-title">PLATFORMER GAME</h3>
+                        <div class="archive-card-tech">UE5 • C++ • Aseprite</div>
+                        <div class="archive-card-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/9Y61dUKtOYI"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="archive-card-description">
+                            A 2D platformer made with PaperZD in Unreal Engine 5, featuring smooth movement, platforming mechanics, and custom sprite animations.
+                        </p>
+                    </div>
+
+                    <!-- Archive Card 5: Quick Draw Game -->
+                    <div class="archive-card">
+                        <h3 class="archive-card-title">QUICK DRAW GAME</h3>
+                        <div class="archive-card-tech">UE5 • C++ • Aseprite</div>
+                        <div class="archive-card-video">
+                            <iframe
+                                src="https://www.youtube.com/embed/qrRYhd1Nmns"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="archive-card-description">
+                            A simple quick draw game exploring PaperZD capabilities for 2D game development in Unreal Engine.
+                        </p>
+                    </div>
+                </div>
+                </div>
+                <button class="archive-nav next">►</button>
+                <div class="archive-indicators">
+                    <div class="archive-indicator active"></div>
+                    <div class="archive-indicator"></div>
+                    <div class="archive-indicator"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/YashShastri87" target="_blank">GITHUB</a>
+                <a href="https://www.linkedin.com/in/yash-shastri-b01256227/" target="_blank">LINKEDIN</a>
+            </div>
+        </footer>
     </div>
-    <div class="header__text-box row">
-      <div class="header__text">
-        <h1 class="heading-primary">
-          <!-- Replace the following name with your name -->
-          <span>Hi There, I'm Yash</span>
-        </h1>
-        <!-- Put a small paragraph about yourself -->
-        <p>A Software/Game Developer from India.</p>
-        <a href="#contact" class="btn btn--pink">Get in touch</a>
-      </div>
-    </div>
-  </header>
 
-  <main role="main">
-    <!-- ***** About ***** -->
+    <script>
+        // Generate Starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numStars = 100;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starfield.appendChild(star);
+            }
+        }
 
-    <section class="about" id="about">
-      <div class="row">
-        <h2>About Me</h2>
-        <div class="about__content">
-          <div class="about__text">
-            <!-- Replace the below paragraph with info about yourself -->
-            <p>With a background in Computer Engineering and a focus on software development and programming, I discovered my passion for game development during my first year of university. Driven by a love for games, I began teaching myself game development, exploring engines like Unreal and Unity. My technical foundation in computer science has been instrumental in mastering scripting and various programming approaches for games. Currently, my primary focus is on creating immersive experiences using Unreal Engine</p>
-            <!-- Provide a link to your resume -->
-            <a href="CV.pdf" target="_blank" class="btn">Download Resume</a>
-          </div>
+        // Draw Pixel Avatar (only if canvas exists)
+        function drawPixelAvatar() {
+            const canvas = document.getElementById('pixelCanvas');
+            if (!canvas) return; // Exit early if no canvas element
 
-          <!-- <div class="about__photo-container">
-            Add a nice photo of yourself 
-            <img class="about__photo" src="" alt="" />
-          </div> -->
-        </div>
-      </div>
-    </section>
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
 
-    <!-- ***** Work ***** -->
+            const pixelSize = 20;
 
-    <section class="work" id="work">
-      <div class="row">
-        <h2>My Projects</h2>
-        <div class="work__boxes">
+            // Simple pixel art pattern (you can customize this)
+            const pattern = [
+                [0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+                [0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0],
+                [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
+                [1,1,1,2,2,1,1,1,1,1,1,1,1,2,2,1,1,1,0,0],
+                [1,1,2,2,2,2,1,1,1,1,1,1,2,2,2,2,1,1,0,0],
+                [1,1,2,2,2,2,1,1,1,1,1,1,2,2,2,2,1,1,0,0],
+                [1,1,1,2,2,1,1,1,1,1,1,1,1,2,2,1,1,1,0,0],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+                [1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,1,1,1,0,0],
+                [1,1,1,1,1,3,3,3,3,3,3,3,3,1,1,1,1,1,0,0],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+                [0,1,1,1,4,4,4,4,4,4,4,4,4,4,1,1,1,0,0,0],
+                [0,0,1,4,4,4,4,4,4,4,4,4,4,4,4,1,0,0,0,0],
+                [0,0,0,4,4,4,4,4,4,4,4,4,4,4,4,0,0,0,0,0],
+                [0,0,0,1,4,4,4,4,4,4,4,4,4,4,1,0,0,0,0,0],
+                [0,0,0,0,1,1,4,4,4,4,4,4,1,1,0,0,0,0,0,0],
+                [0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            ];
 
-          <!-- Each div with the work__box class is a project. -->
+            const colors = {
+                0: '#0A0908',
+                1: '#f5c4a4',
+                2: '#22333B',
+                3: '#A9927D',
+                4: '#5E503F'
+            };
 
-          <!-- Blender Addon -->
-          <div class="work__box">
-            <div class="work__text">
-              <h3>Blender Addon/Plugin</h3>
-              <p>
-                A free Addon for Blender to capture basic Animations and Poses using Mediapipe.(Final Year Graduation
-                Project)
-              </p>
-              <ul class="work__list">
-                <li>Python</li>
-                <li>Mediapipe</li>
-                <li>Blender</li>
-              </ul>
+            for (let y = 0; y < pattern.length; y++) {
+                for (let x = 0; x < pattern[y].length; x++) {
+                    ctx.fillStyle = colors[pattern[y][x]];
+                    ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+                }
+            }
+        }
 
-              <div class="work__links">
-              </div>
-            </div>
-            <div class="work__image-box">
-              <img src="./images/BE%20Project%20Presentation%202.png" class="work__image" alt="Project 1" />
-            </div>
-          </div>
+        // Image Carousel Functionality
+        class ImageCarousel {
+            constructor(carouselElement) {
+                this.carousel = carouselElement;
+                this.track = carouselElement.querySelector('.carousel-track');
+                this.slides = Array.from(carouselElement.querySelectorAll('.carousel-slide'));
+                this.prevBtn = carouselElement.querySelector('.carousel-arrow.prev');
+                this.nextBtn = carouselElement.querySelector('.carousel-arrow.next');
+                this.indicators = Array.from(carouselElement.querySelectorAll('.carousel-indicator'));
+                this.counter = carouselElement.querySelector('.carousel-counter');
+                this.currentIndex = 0;
 
-          <!-- Gears -->
-          <div class="work__box">
-            <div class="work__text">
-              <h3>Horde Mode Coop Shooter</h3>
-              <p>
-                Gears Style or Over The Shoulder Camera Third Person Shooting with Abilities like Superspeed and Healing over time.Complete C++ Project with Multiplayer Support upto 4 players.
-              </p>
-              <ul class="work__list">
-                <li>Unreal Engine 4</li>
-                <li>C++</li>
-              </ul>
-            </div>
-            <div style="position: relative; left: 150px">
-              <iframe width="640" height="360"
-                src="https://www.youtube.com/embed/Ji5sdgNzizY?vq=hd1080&modestbranding=1&autoplay=1&controls=0&iv_load_policy=3&loop=1&rel=0&showinfo=0&color=white&autohide=0"
-                frameborder="0"></iframe>
-            </div>
-          </div>
+                if (this.slides.length > 0) {
+                    this.init();
+                }
+            }
 
-          <!-- Toycathon -->
-          <div class="work__box">
-            <div class="work__text">
-              <h3>Toycathon Game Jam</h3>
-              <p>
-                Under the team Pixel Vibe, Kitbashing Assets from UE Marketplace and other sources we took this project
-                to the finals.A Souls-like Game created with the idea of giving the player experience of Iconic Indian
-                Historical Moments and Battles.
-              </p>
-              <ul class="work__list">
-                <li>Unreal Engine 4</li>
-                <li>C++</li>
-              </ul>
-            </div>
-            <div style="position: relative; left: 150px">
-              <iframe width="640" height="360"
-                src="https://www.youtube.com/embed/bRO3eJAHFx0?vq=hd1080&modestbranding=1&autoplay=1&controls=0&iv_load_policy=3&loop=1&rel=0&showinfo=0&color=white&autohide=0"
-                frameborder="0"></iframe></iframe>
-            </div>
-          </div>
-          
-          <!-- Hybrid Game -->
-          <div class="work__box">
-            <div class="work__text">
-              <h3>2D/3D Hybrid Action Game</h3>
-              <p>
-                Using PaperZD with Stylized Environments, an Action Game with Ability System that makes use of puzzles
-                to encourage the player to use these Abilities.Focus is also on Melee and Ranged Combat
-              </p>
-              <ul class="work__list">
-                <li>Unreal Engine 5</li>
-                <li>C++</li>
-                <li>Aseprite</li>
-              </ul>
-            </div>
-            <div style="position: relative; left: 150px">
-              <iframe width="640" height="360"
-                src="https://www.youtube.com/embed/RuNDhAa3ErA?vq=hd1080&modestbranding=1&autoplay=1&controls=0&iv_load_policy=3&loop=1&rel=0&showinfo=0&color=white&autohide=0"
-                frameborder="0"></iframe>
-            </div>
-          </div>
+            init() {
+                this.updateCarousel();
 
-          <!-- Platformer -->
-          <div class="work__box">
-            <div class="work__text">
-              <h3>Platformer Game</h3>
-              <p>
-                A Simple 2D Platformer made with PaperZD in Unreal Engine 5. 
-              </p>
-              <ul class="work__list">
-                <li>Unreal Engine 5</li>
-                <li>C++</li>
-                <li>Aseprite</li>
-              </ul>
-            </div>
-            <div style="position: relative; left: 150px">
-              <iframe width="640" height="360"
-                src="https://www.youtube.com/embed/9Y61dUKtOYI?vq=hd1080&modestbranding=1&autoplay=1&controls=0&iv_load_policy=3&loop=1&rel=0&showinfo=0&color=white&autohide=0"
-                frameborder="0"></iframe>
-            </div>
-          </div>
+                if (this.prevBtn) {
+                    this.prevBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.prev();
+                    });
+                }
+                if (this.nextBtn) {
+                    this.nextBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.next();
+                    });
+                }
 
-          <!-- Quick Draw -->
-          <div class="work__box">
-            <div class="work__text">
-              <h3>Quick Draw Game</h3>
-              <p>
-                Trying out PaperZD to make 2D games in Unreal Engine.This is a Simple Quick Draw Game.A bunch of 2D
-                Games were made following this.
-              </p>
-              <ul class="work__list">
-                <li>Unreal Engine 5</li>
-                <li>C++</li>
-                <li>Aseprite</li>
-              </ul>
-            </div>
-            <div style="position: relative; left: 150px">
-              <iframe width="640" height="360"
-                src="https://www.youtube.com/embed/qrRYhd1Nmns?vq=hd1080&modestbranding=1&autoplay=1&controls=0&iv_load_policy=3&loop=1&rel=0&showinfo=0&color=white&autohide=0"
-                frameborder="0"></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.goToSlide(index);
+                    });
+                });
 
-  <!-- ***** Contact ***** -->
+                // Add click to expand on images
+                this.slides.forEach((slide, index) => {
+                    const img = slide.querySelector('img');
+                    if (img) {
+                        img.addEventListener('click', () => this.expandImage(index));
+                    }
+                });
+            }
 
-  <section class="contact" id="contact">
-    <div class="row">
-      <h2>Get in Touch</h2>
-      <div class="contact__info">
-        <p>
-          For any questions, querys or just wanting to get in touch with me feel free use Contact me on Linkdin
-        </p>
+            updateCarousel() {
+                this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
 
-      </div>
-    </div>
-  </section>
+                // Update active slide class
+                this.slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === this.currentIndex);
+                });
 
-  <!-- ***** Footer ***** -->
+                // Update indicators
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentIndex);
+                });
 
-  <footer role="contentinfo" class="footer">
-    <div class="row">
-      <!-- Update the links to point to your accounts -->
-      <ul class="footer__social-links">
-        <li class="footer__social-link-item">
-          <a href="https://github.com/YashShastri87" title="Link to Github Profile" target="_blank">
-            <img src="./images/github.svg" class="footer__social-image" alt="Github">
-          </a>
-        </li>
-        <li class="footer__social-link-item">
-          <a href="https://www.linkedin.com/in/yash-shastri-b01256227//" target="_blank">
-            <img src="./images/linkedin.svg" title="Link to Linkedin Profile" class="footer__social-image"
-              alt="Linkedin">
-          </a>
-        </li>
-      </ul>
-    </div>
-  </footer>
+                // Update counter
+                if (this.counter) {
+                    this.counter.textContent = `${this.currentIndex + 1} / ${this.slides.length}`;
+                }
 
-  <a href="#top" class="back-to-top" title="Back to Top">
-    <img src="./images/arrow-up.svg" alt="Back to Top" class="back-to-top__image" />
-  </a>
-  <script src="./index.js"></script>
+                // Update button states
+                if (this.prevBtn) {
+                    this.prevBtn.disabled = this.currentIndex === 0;
+                }
+                if (this.nextBtn) {
+                    this.nextBtn.disabled = this.currentIndex === this.slides.length - 1;
+                }
+            }
+
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.updateCarousel();
+                }
+            }
+
+            next() {
+                if (this.currentIndex < this.slides.length - 1) {
+                    this.currentIndex++;
+                    this.updateCarousel();
+                }
+            }
+
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateCarousel();
+            }
+
+            expandImage(startIndex) {
+                expandCarousel(this.slides.map(slide => slide.querySelector('img').src), startIndex);
+            }
+        }
+
+        // Initialize all carousels
+        function initCarousels() {
+            const carousels = document.querySelectorAll('.image-carousel');
+            carousels.forEach(carousel => new ImageCarousel(carousel));
+        }
+
+        // Expand single image
+        function expandImage(imgElement) {
+            const images = [imgElement.src];
+            expandCarousel(images, 0);
+        }
+
+        // Expand carousel with multiple images
+        function expandCarousel(images, startIndex = 0) {
+            const modal = document.createElement('div');
+            modal.className = 'media-modal active';
+            
+            const content = document.createElement('div');
+            content.className = 'media-modal-content';
+            
+            let currentIndex = startIndex;
+            
+            const img = document.createElement('img');
+            img.src = images[currentIndex];
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'close-modal';
+            closeBtn.innerHTML = '✕';
+            closeBtn.onclick = function() {
+                document.body.removeChild(modal);
+                document.body.style.overflow = 'auto';
+            };
+            
+            content.appendChild(img);
+            content.appendChild(closeBtn);
+            
+            // Add navigation arrows if multiple images
+            if (images.length > 1) {
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'modal-carousel-nav prev';
+                prevBtn.innerHTML = '◄';
+                prevBtn.onclick = function() {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    img.src = images[currentIndex];
+                };
+                
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'modal-carousel-nav next';
+                nextBtn.innerHTML = '►';
+                nextBtn.onclick = function() {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    img.src = images[currentIndex];
+                };
+                
+                content.appendChild(prevBtn);
+                content.appendChild(nextBtn);
+                
+                // Keyboard navigation
+                const keyHandler = function(e) {
+                    if (e.key === 'ArrowLeft') {
+                        prevBtn.click();
+                    } else if (e.key === 'ArrowRight') {
+                        nextBtn.click();
+                    } else if (e.key === 'Escape') {
+                        closeBtn.click();
+                        document.removeEventListener('keydown', keyHandler);
+                    }
+                };
+                document.addEventListener('keydown', keyHandler);
+            }
+            
+            modal.appendChild(content);
+            
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                    document.body.style.overflow = 'auto';
+                }
+            };
+            
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function expandVideo(iframeElement) {
+            const modal = document.createElement('div');
+            modal.className = 'media-modal active';
+            
+            const content = document.createElement('div');
+            content.className = 'media-modal-content';
+            
+            const iframe = document.createElement('iframe');
+            iframe.src = iframeElement.src;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'close-modal';
+            closeBtn.innerHTML = '✕';
+            closeBtn.onclick = function() {
+                document.body.removeChild(modal);
+                document.body.style.overflow = 'auto';
+            };
+            
+            content.appendChild(iframe);
+            content.appendChild(closeBtn);
+            modal.appendChild(content);
+            
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                    document.body.style.overflow = 'auto';
+                }
+            };
+            
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.querySelector('.media-modal.active');
+                if (modal) {
+                    document.body.removeChild(modal);
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Archive Carousel Functionality
+        class ArchiveCarousel {
+            constructor() {
+                this.wrapper = document.querySelector('.archive-carousel-wrapper');
+                this.track = document.querySelector('.archive-carousel-track');
+                this.cards = Array.from(document.querySelectorAll('.archive-card'));
+                this.prevBtn = document.querySelector('.archive-nav.prev');
+                this.nextBtn = document.querySelector('.archive-nav.next');
+                this.indicators = Array.from(document.querySelectorAll('.archive-indicator'));
+                this.currentIndex = 0;
+                this.cardsPerView = window.innerWidth <= 768 ? 1 : 2;
+                // With 5 cards and 2 per view, we can show: [0,1], [2,3], [4] = 3 positions (indices 0, 1, 2)
+                this.maxIndex = Math.max(0, this.cards.length - this.cardsPerView);
+
+                if (this.cards.length > 0) {
+                    this.init();
+                }
+            }
+
+            init() {
+                this.updateCarousel();
+
+                if (this.prevBtn) {
+                    this.prevBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.prev();
+                    });
+                }
+                if (this.nextBtn) {
+                    this.nextBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.next();
+                    });
+                }
+
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.goToSlide(index);
+                    });
+                });
+
+                // Handle resize
+                window.addEventListener('resize', () => {
+                    this.cardsPerView = window.innerWidth <= 768 ? 1 : 2;
+                    this.maxIndex = Math.max(0, this.cards.length - this.cardsPerView);
+                    if (this.currentIndex > this.maxIndex) {
+                        this.currentIndex = this.maxIndex;
+                    }
+                    this.updateCarousel();
+                });
+            }
+
+            updateCarousel() {
+                // Calculate based on actual card width + gap
+                if (this.cards.length === 0) return;
+
+                const card = this.cards[0];
+                const cardStyle = window.getComputedStyle(card);
+                const cardWidth = card.offsetWidth;
+                const gap = 32; // 2rem gap
+
+                // Move by one card at a time
+                const moveAmount = this.currentIndex * (cardWidth + gap);
+                this.track.style.transform = `translateX(-${moveAmount}px)`;
+
+                // Update indicators - map currentIndex to indicator index
+                const indicatorIndex = Math.floor(this.currentIndex / this.cardsPerView);
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === indicatorIndex);
+                });
+
+                // Update button states
+                if (this.prevBtn) {
+                    this.prevBtn.disabled = this.currentIndex === 0;
+                }
+                if (this.nextBtn) {
+                    this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
+                }
+            }
+
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.updateCarousel();
+                }
+            }
+
+            next() {
+                if (this.currentIndex < this.maxIndex) {
+                    this.currentIndex++;
+                    this.updateCarousel();
+                }
+            }
+
+            goToSlide(index) {
+                // Convert indicator index to card index
+                this.currentIndex = index * this.cardsPerView;
+                if (this.currentIndex > this.maxIndex) {
+                    this.currentIndex = this.maxIndex;
+                }
+                this.updateCarousel();
+            }
+        }
+
+        function initArchiveCarousel() {
+            if (document.querySelector('.archive-carousel')) {
+                new ArchiveCarousel();
+            }
+        }
+
+        // Initialize
+        createStarfield();
+        drawPixelAvatar();
+        initCarousels();
+        initArchiveCarousel();
+    </script>
 </body>
-
 </html>
